@@ -8,10 +8,13 @@
 
 int main(int argc, char **argv)
 {
-    if (false) // make false to run unit-tests
+    if (0) // make false to run unit-tests
     {
+        Espresso x{5}, z{10};
+        std::string y{typeid(x).name()};
+        std::cout << typeid(z).name() << std::endl;
+        std::cout << typeid(x).name() + 1 << std::endl;
         // debug section
-        
     }
     else
     {
@@ -23,5 +26,5 @@ int main(int argc, char **argv)
         else
             std::cout << "FAILED" << std::endl;
     }
-    return 0;   
+    return 0;
 }
