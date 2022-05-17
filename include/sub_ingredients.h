@@ -3,8 +3,7 @@
 #include "ingredient.h"
 #include <string>
 #include <typeinfo>
-// std::map<class, std::string> sub;
-// sub[Cinnamon] = "Cinnamon";
+
 #define DEFCLASS(namef, num)                                  \
     class namef : public Ingredient                           \
     {                                                         \

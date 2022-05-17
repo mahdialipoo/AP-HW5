@@ -11,9 +11,18 @@ int main(int argc, char **argv)
     if (0) // make false to run unit-tests
     {
         Espresso x{5}, z{10};
+        int r{5};
+        Espresso *p{new Espresso{x}};
         std::string y{typeid(x).name()};
-        std::cout << typeid(z).name() << std::endl;
-        std::cout << typeid(x).name() + 1 << std::endl;
+        switch (r)
+        {
+        case 4:
+            std::cout << "hk" << std::endl;
+            break;
+        default: // Cinnamon
+            std::cout << "hk" << std::endl;
+            break;
+        }
         // debug section
     }
     else
