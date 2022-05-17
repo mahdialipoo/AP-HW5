@@ -2,18 +2,20 @@
 #define CAPPUCCINO
 
 #include <vector>
+#include <string>
+#include "espresso_based.h"
 class Cappuccino : public EspressoBased
 {
 public:
     Cappuccino();
-    Cappuccino(const Cappuccino &cap);
+    Cappuccino(const Cappuccino &);
     ~Cappuccino();
-    void operator=(const Cappuccino &cap);
+    void operator=(const Cappuccino &);
 
-    virtual std::string get_name();
+    virtual std::string get_name() const;
     virtual double price();
 
-    void add_side_item(Ingredient *side);
+    void add_side_item(Ingredient *);
     std::vector<Ingredient *> &get_side_items();
 
 private:
