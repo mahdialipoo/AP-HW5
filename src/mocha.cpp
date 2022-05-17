@@ -70,9 +70,11 @@ void Mocha::operator=(const Mocha &mch)
 double Mocha::price()
 {
     double s{};
+    for (const auto &i : ingredients)
+        s += (i->price());
     for (const auto &i : side_items)
         s += (i->price());
-    return s + 60.0;
+    return s;
 }
 std::string Mocha::get_name() const { return "Mocha"; }
 

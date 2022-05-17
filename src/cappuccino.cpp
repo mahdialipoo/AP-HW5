@@ -15,57 +15,67 @@ Cappuccino::Cappuccino() : EspressoBased(), side_items{}
 Cappuccino::Cappuccino(const Cappuccino &cap) : EspressoBased(cap)
 {
     for (const auto &i : cap.side_items)
-        if ((typeid(*i).name() + 1) == "Water")
+    {
+        if (i->get_name() == "Water")
             side_items.push_back(new Water{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "MilkFoam")
+        else if (i->get_name() == "MilkFoam")
             side_items.push_back(new MilkFoam{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "MilkFoam")
+        else if (i->get_name() == "Sugar")
             side_items.push_back(new Sugar{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "Sugar")
+        else if (i->get_name() == "Chocolate")
             side_items.push_back(new Chocolate{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "Chocolate")
+        else if (i->get_name() == "Cookie")
             side_items.push_back(new Cookie{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "Cookie")
+        else if (i->get_name() == "Espresso")
             side_items.push_back(new Espresso{i->get_units()});
-        else if ((typeid(*i).name() + 1) == "Espresso")
+        else if (i->get_name() == "Milk")
             side_items.push_back(new Milk{i->get_units()});
         else
             side_items.push_back(new Cinnamon{i->get_units()});
+    }
 }
 void Cappuccino::operator=(const Cappuccino &cap)
 {
     if (this != &cap)
     {
-        EspressoBased::operator=(cap);
+        std::cout << price() << "hh" << std::endl;
+        // EspressoBased::operator=(cap);
+        std::cout << price() << "hh" << std::endl;
         for (const auto &i : side_items)
             delete i;
         side_items.clear();
+        std::cout << price() << "hh" << std::endl;
         for (const auto &i : cap.side_items)
-            if ((typeid(*i).name() + 1) == "Water")
+        {
+            if (i->get_name() == "Water")
                 side_items.push_back(new Water{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "MilkFoam")
+            else if (i->get_name() == "MilkFoam")
                 side_items.push_back(new MilkFoam{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "Sugar")
+            else if (i->get_name() == "Sugar")
                 side_items.push_back(new Sugar{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "Chocolate")
+            else if (i->get_name() == "Chocolate")
                 side_items.push_back(new Chocolate{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "Cookie")
+            else if (i->get_name() == "Cookie")
                 side_items.push_back(new Cookie{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "Espresso")
+            else if (i->get_name() == "Espresso")
                 side_items.push_back(new Espresso{i->get_units()});
-            else if ((typeid(*i).name() + 1) == "Milk")
+            else if (i->get_name() == "Milk")
                 side_items.push_back(new Milk{i->get_units()});
-            else
+            else if (i->get_name() == "Cinnamon")
                 side_items.push_back(new Cinnamon{i->get_units()});
+        }
     }
+    std::cout << price() << "hh" << std::endl;
 }
 
 double Cappuccino::price()
 {
     double s{};
+    for (const auto &i : ingredients)
+        s += (i->price());
     for (const auto &i : side_items)
         s += (i->price());
-    return s + 55.0;
+    return s;
 }
 std::string Cappuccino::get_name() const { return "Cappuccino"; }
 Cappuccino::~Cappuccino()

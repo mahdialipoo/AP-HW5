@@ -14,10 +14,9 @@ int main(int argc, char **argv)
         cappuccino.add_side_item(new Water{1});
         Cappuccino equal;
         equal.add_side_item(new Sugar{1});
-        std::cout << equal.price() << std::endl;
-        std::cout << cappuccino.price() << std::endl;
         equal = cappuccino;
         std::cout << equal.price() << std::endl;
+        std::cout << cappuccino.price() << std::endl;
         // debug section
     }
     else
