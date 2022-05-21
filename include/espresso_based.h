@@ -1,8 +1,16 @@
-#ifndef ESPRESSO_BASED_H
-#define ESPRESSO_BASED_H
 #include <string>
 #include <vector>
+#include <typeinfo>
+#include <iostream>
 #include "sub_ingredients.h"
+#include <ftxui/dom/elements.hpp>
+#include <ftxui/screen/screen.hpp>
+#include <ftxui/dom/elements.hpp>
+#include <chrono>
+#include <thread>
+#ifndef ESPRESSO_BASED_H
+#define ESPRESSO_BASED_H
+
 class EspressoBased
 {
 public:

@@ -1,10 +1,22 @@
+include(FetchContent)
+
+FetchContent_Declare(ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+  GIT_TAG v2.0.0
+)
+
+FetchContent_GetProperties(ftxui)
+if(NOT ftxui_POPULATED)
+  FetchContent_Populate(ftxui)
+  add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
 cmake_minimum_required(VERSION 3.13)
 project(AP)
 
 set(CMAKE_CXX_STANDARD 20)
 
 find_package(GTest REQUIRED)
-
 include_directories(include/)
 
 add_executable(main
@@ -17,4 +29,6 @@ add_executable(main
 target_link_libraries(main
         GTest::GTest
         GTest::Main
+        ftxui::screen
+        ftxui::dom
 )

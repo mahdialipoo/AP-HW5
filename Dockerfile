@@ -23,6 +23,13 @@ RUN cmake .. \
     && make \
     && make install
 
+# install UI
+WORKDIR /usr/src/libraries
+RUN git clone --depth=1 -b main https://github.com/ArthurSonzogni/ftxui
+WORKDIR /usr/src/libraries/ftxui/build
+RUN cmake .. \
+    && make \
+    && make install
 # build the project
 WORKDIR /usr/src/app
 COPY . .

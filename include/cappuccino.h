@@ -1,6 +1,5 @@
 #ifndef CAPPUCCINO
 #define CAPPUCCINO
-
 #include <vector>
 #include <string>
 #include "espresso_based.h"
@@ -11,7 +10,7 @@ public:
     Cappuccino(const Cappuccino &);
     ~Cappuccino();
     void operator=(const Cappuccino &);
-
+    // void brew();
     virtual std::string get_name() const;
     virtual double price();
 

@@ -1,7 +1,4 @@
 #include "espresso_based.h"
-
-#include <typeinfo>
-#include <iostream>
 std::vector<Ingredient *> &EspressoBased::get_ingredients() { return ingredients; }
 EspressoBased::~EspressoBased()
 {
@@ -64,4 +61,47 @@ void EspressoBased::operator=(const EspressoBased &esp)
     }
     std::cout << price() << "gg" << std::endl;
 }
-// void EspressoBased::brew(){}
+
+void EspressoBased::brew()
+{
+    // using namespace std::chrono_literals;
+    std::string reset_position;
+    ftxui::Element document = ftxui::border(ftxui::text("brewing ... ") | ftxui::bold | ftxui::color(ftxui::Color::Blue));
+    auto screen = ftxui::Screen::Create(
+        ftxui::Dimension::Full(),       // Width
+        ftxui::Dimension::Fit(document) // Height
+    );
+    ftxui::Render(screen, document);
+    std::cout << reset_position;
+    screen.Print();
+    reset_position = screen.ResetPosition();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    double nt{};
+    double n{};
+    for (auto const &i : ingredients)
+        nt += i->get_units();
+    for (auto const &i : ingredients)
+    {
+        n += i->get_units();
+        document = ftxui::window(ftxui::text((i->get_name() + " " + std::to_string(static_cast<int>(100 * n / nt)) + " % ")) | ftxui::color(ftxui::Color::Red), ftxui::border(ftxui::gauge(n / nt)));
+        screen = ftxui::Screen::Create(
+            ftxui::Dimension::Full(),       // Width
+            ftxui::Dimension::Fit(document) // Height
+        );
+        ftxui::Render(screen, document);
+        std::cout << reset_position;
+        screen.Print();
+        reset_position = screen.ResetPosition();
+        std::this_thread::sleep_for(std::chrono::seconds((i->get_units())));
+    }
+    document = ftxui::border(ftxui::text("Complete !") | ftxui::bold | ftxui::color(ftxui::Color::Green));
+    screen = ftxui::Screen::Create(
+        ftxui::Dimension::Full(),       // Width
+        ftxui::Dimension::Fit(document) // Height
+    );
+    ftxui::Render(screen, document);
+    std::cout << reset_position;
+    screen.Print();
+    reset_position = screen.ResetPosition();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+}
